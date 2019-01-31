@@ -1,0 +1,171 @@
+[v-cloak] {
+  display: none; }
+
+#rosterMain {
+  min-width: 800px;
+  display: block; }
+  #rosterMain .headboard {
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.7); }
+    #rosterMain .headboard .title {
+      font-size: 24px;
+      font-weight: 100;
+      font-family: SegoeUI-Light;
+      color: #222; }
+    #rosterMain .headboard .filter {
+      margin-top: 20px; }
+      #rosterMain .headboard .filter .fcontain {
+        width: 33%;
+        min-width: 150px;
+        padding-right: 25px; }
+        #rosterMain .headboard .filter .fcontain .ftitle {
+          font-size: 14px;
+          font-weight: bold;
+          color: #666666; }
+          #rosterMain .headboard .filter .fcontain .ftitle input {
+            width: 100%; }
+      #rosterMain .headboard .filter .fcontain:nth-child(3n) {
+        width: 33%;
+        min-width: 150px;
+        padding-right: 0px; }
+    #rosterMain .headboard .control-contain {
+      margin-top: 20px; }
+  #rosterMain .bodyboard {
+    background: #fff;
+    margin-top: 20px; }
+    #rosterMain .bodyboard .heads {
+      height: 65px;
+      padding: 0px 28px; }
+    #rosterMain .bodyboard .headsBlock {
+      width: 200px;
+      text-overflow: ellipsis; }
+    #rosterMain .bodyboard .left-btn {
+      padding: 10px 0px 10px 10px;
+      cursor: pointer; }
+    #rosterMain .bodyboard .right-btn {
+      padding: 10px 10px 10px 0px;
+      cursor: pointer; }
+    #rosterMain .bodyboard .pasc {
+      color: #001021;
+      font-size: 22px;
+      margin: 0px 28px; }
+    #rosterMain .bodyboard .name {
+      font-size: 22px;
+      color: #001021; }
+    #rosterMain .bodyboard .colums {
+      padding: 0px 26px 26px; }
+      #rosterMain .bodyboard .colums .week {
+        width: 100%; }
+      #rosterMain .bodyboard .colums .head {
+        height: 65px;
+        background: #F5F6FA;
+        font-size: 14px;
+        font-weight: 600;
+        color: #A3A6B4;
+        border-bottom: 1px solid #EAF0F4; }
+        #rosterMain .bodyboard .colums .head .weekevery {
+          min-width: calc(100%/8);
+          max-width: 200px; }
+        #rosterMain .bodyboard .colums .head .edit {
+          height: 65px;
+          width: 140px; }
+      #rosterMain .bodyboard .colums .dateBodyCon .innerCon {
+        border-left: 1px solid #EAF0F4; }
+        #rosterMain .bodyboard .colums .dateBodyCon .innerCon .corner {
+          font-size: 16px; }
+      #rosterMain .bodyboard .colums .dateBodyCon .dateBodySide {
+        border-right: 1px solid #EAF0F4; }
+        #rosterMain .bodyboard .colums .dateBodyCon .dateBodySide .eachEdit {
+          height: 110px;
+          border-bottom: 1px solid #EAF0F4; }
+      #rosterMain .bodyboard .colums .dateBodyCon .dvided {
+        height: 110px;
+        min-width: calc(100%/7);
+        max-width: 200px;
+        background: #fff;
+        transition: all .3s;
+        padding: 10px;
+        border: 1px solid #EAF0F4;
+        border-top: 0;
+        border-left: 0;
+        overflow-y: auto;
+        -ms-overflow-style: none; }
+        #rosterMain .bodyboard .colums .dateBodyCon .dvided .shopname {
+          color: #555555;
+          font-size: 12px;
+          padding-top: 5px; }
+      #rosterMain .bodyboard .colums .dateBodyCon .dvided::-webkit-scrollbar {
+        display: none; }
+      #rosterMain .bodyboard .colums .dateBodyCon .dvided:hover {
+        background: #F5F6FA; }
+      #rosterMain .bodyboard .colums .dateBodyCon .out {
+        cursor: not-allowed; }
+        #rosterMain .bodyboard .colums .dateBodyCon .out .corner {
+          color: #C6C6CE; }
+
+#rosterMain select option:checked, select option:hover {
+  background: #f5f5f5; }
+
+.dialog-mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 999; }
+  .dialog-mask .infoPanel {
+    width: 1140px;
+    min-height: 630px;
+    background: #fff;
+    border-radius: 4px; }
+    .dialog-mask .infoPanel .head {
+      height: 65px;
+      border-bottom: 1px solid #CECECE;
+      font-size: 20px;
+      padding-left: 18px;
+      font-family: SegoeUI-Light;
+      color: #222; }
+      .dialog-mask .infoPanel .head .remove-x {
+        padding: 20px;
+        cursor: pointer; }
+    .dialog-mask .infoPanel .infoColums {
+      background: #F9F9F9; }
+      .dialog-mask .infoPanel .infoColums .cum1 {
+        color: #551622;
+        font-size: 14px;
+        font-weight: bold;
+        height: 45px;
+        margin: 0 auto; }
+        .dialog-mask .infoPanel .infoColums .cum1 div {
+          min-width: 128px; }
+      .dialog-mask .infoPanel .infoColums .cum2 {
+        color: #706D6C;
+        font-size: 14px;
+        font-weight: bold;
+        height: 45px;
+        margin: 0 auto; }
+        .dialog-mask .infoPanel .infoColums .cum2 div {
+          min-width: 104px;
+          margin-right: 25px; }
+    .dialog-mask .infoPanel .clockColums {
+      padding-left: 15px; }
+      .dialog-mask .infoPanel .clockColums .clockDived {
+        font-size: 16px;
+        color: #706D6C;
+        margin-top: 25px; }
+      .dialog-mask .infoPanel .clockColums .manyInputTitle {
+        width: 104px; }
+      .dialog-mask .infoPanel .clockColums .manyInputCon {
+        width: 104px;
+        margin-right: 25px; }
+      .dialog-mask .infoPanel .clockColums .manyInputCon {
+        width: 104px;
+        margin-right: 25px; }
+      .dialog-mask .infoPanel .clockColums .manyInput {
+        width: 77px;
+        opacity: 1; }
+      .dialog-mask .infoPanel .clockColums .off {
+        opacity: 0.5; }
+    .dialog-mask .infoPanel .panelControl {
+      margin-top: 30px; }
