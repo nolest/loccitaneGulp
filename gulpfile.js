@@ -4,12 +4,16 @@
  * gulp sass 从WebContentSrc文件夹抽取所有scss文件，编译到WebContentDist下
  * gulp js 从WebContentSrc文件夹抽取所有js文件，编译到WebContentDist下
  * gulp inject 从WebContentSrc文件夹抽取所有jsp文件，注入同名的css js文件
+ * gulp jspMove 从WebContentSrc文件夹复制所有jsp文件，编译到WebContentDist下
+ * gulp clean 清除WebContentDist所有文件，包括本身
+ * gulp moveOther 移动出去jsp外的所有文件到WebContentDist
+ * gulp begin 整合初始化任务，一条命令完成初始化
  * gulp dev 开启监听模式，监听WebContentSrc文件夹的sass和js文件变动，输出到WebContentDist下
  * 在目标文件夹WebContentDist/resources/pages/下会生成对应层级的目录
  */
 
 //配置文件
-var config = require('./gulp.env.js');
+//var config = require('./gulp.env.js');
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
@@ -18,13 +22,18 @@ var using = require('gulp-using');
 var glob = require('glob');
 var path = require('path');
 var rename = require("gulp-rename");
+var clean = require('gulp-clean');
 
 //资源源码目录
 var srcDir = './WebContentSrc/WEB-INF/';
 //资源目标目录
-var distDir = './WebContentDist/resources/pages/';
+var distDir = './WebContent/resources/pages/';
+//整体源码目录
+var srcRoot = './WebContentSrc/';
+//整体目标目录
+var distRoot = './WebContent/';
 //jsp文件目录
-var jspDistDir = './WebContentDist/WEB-INF/jsp';
+var jspDistDir = './WebContent/WEB-INF/jsp';
 //获取文件名
 function getName (file) {
     return path.win32.basename(file.path).slice(0, -path.extname(file.path).length);
@@ -67,15 +76,35 @@ gulp.task('inject',() => {
         }))
     .pipe(gulp.dest(jspDistDir))
 })
-//开发监听模式
-gulp.task('dev', () => {
-    gulp.watch(srcDir + '**/*.scss', gulp.series('sass'));
-    gulp.watch(srcDir + '**/*.js', gulp.series('js'));
+//scss js jsp以外的全部移动
+gulp.task('moveOther',()=>{
+    return gulp.src([srcRoot + '**/*.*','!' + srcDir + 'jsp/**/*.scss','!' + srcDir + 'jsp/**/*.js','!' + srcDir + 'jsp/**/*.jsp'])
+    .pipe(gulp.dest(distRoot))
+})
+//jsp生成
+gulp.task('jspMove',() => {
+    return gulp.src(srcDir + 'jsp/**/*.jsp')
+    .pipe(gulp.dest(jspDistDir))
+})
+//首次执行
+gulp.task('begin',gulp.series(['moveOther','jspMove','sass','js','inject']),() => {
+    console.log('init done')
+})
+//清理所有目标文件夹
+gulp.task('clean', () => {
+    return gulp.src([distRoot])
+    .pipe(clean())
 })
 //模板插入注射节点
 gulp.task('injectPoint' , ()=> {
     return gulp.src(srcDir + 'jsp/**/*.jsp')
     .pipe(replace('<%@include file="/WEB-INF/jsp/common/jspInit.jsp" %>'),'<% @include file="/WEB-INF/jsp/common/jspInit.jsp" %>')
+})
+//开发监听模式
+gulp.task('dev', () => {
+    //gulp.watch(srcDir + '**/*.jsp', gulp.series('jspMove'));
+    gulp.watch(srcDir + '**/*.scss', gulp.series('sass'));
+    gulp.watch(srcDir + '**/*.js', gulp.series('js'));
 })
 //发布生产模式
 gulp.task('prod', () => {
